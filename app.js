@@ -14,7 +14,7 @@ var converter = new Converter({}), MVPs = [{ Player: 'Stephen Curry', Age: 26 },
                                            { Player: "Dirk Nowitzki", Age: 28 },
                                            { Player: "Steve Nash", Age: 31 }];
 
-var playerAr = [], net = new synaptic.Architect.Perceptron(17,2,1), rawAr = [];
+var playerAr = [], net = new synaptic.Architect.LSTM(17,8,1), rawAr = [];
 var ignoredStats = ['Rk', 'Player', 'Pos', 'Age', 'Tm', 'MVP', 'FG' ,'FGA','3P','3PA','2P','2PA','2P'];
 
 converter.on('end_parsed', function(JSONarray){
