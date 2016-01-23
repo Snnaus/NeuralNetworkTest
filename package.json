@@ -1,0 +1,18 @@
+{
+  "name": "nbaneuralnet",
+  "version": "0.0.1",
+  "description": "Looking to predict NBA MVP's based on their stat-lines",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js"
+  },
+  "author": "Glenn Nausley",
+  "license": "ISC",
+  "dependencies": {
+    "brain": "^0.7.0",
+    "csvtojson": "^0.5.1",
+    "lodash": "^4.0.0",
+    "synaptic": "^1.0.2"
+  }
+}
