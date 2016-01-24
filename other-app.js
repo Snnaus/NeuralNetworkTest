@@ -14,8 +14,8 @@ var converter = new Converter({}), MVPs = [{ Player: 'Stephen Curry', Age: 26 },
                                            { Player: "Dirk Nowitzki", Age: 28 },
                                            { Player: "Steve Nash", Age: 31 }];
 
-var playerAr = [], net = new synaptic.Architect.LSTM(17,12,1), rawAr = [];
-var ignoredStats = ['Rk', 'Player', 'Pos', 'Age', 'Tm', 'MVP', '2P', '2PA'];
+var playerAr = [], rawAr = [];
+var ignoredStats = ['Rk', 'Player', 'Pos', 'Age', 'Tm', 'MVP', '2P','2PA','2P'];
 
 converter.on('end_parsed', function(JSONarray){
   rawAr = cleanArray(JSONarray, MVPs);
@@ -72,26 +72,24 @@ var params = {
 
 var player = {
   Player: "Kobe Bryant",
-  Age: 31
+  Age: 29
 }, player2 = {
   Player: 'LeBron James',
-  Age: 25
+  Age: 27
 }, player3 = {
-    Player: 'Al Jefferson',
-    Age: 30
-};
+    Player: 'Derrick Rose',
+    Age: 22
+},
+player4 = [71,71,42.0,10.7,25.5,.420,1.4,4.3,.320,.447,8.2,10.1,.814,0.7,3.1,3.8,4.6,2.5,0.3,3.3,2.1,31.1
+];
+
+var netJSON = JSON.parse(fs.readFileSync('./mvp.json'));
+var net = synaptic.Network.fromJSON(netJSON);
 
 setTimeout(function(){
-  console.log(net.trainer.train(playerAr, params));
   console.log(net.activate(testPlayer(rawAr, player)));
-  fs.writeFile('mvp.json', JSON.stringify(net.toJSON()), function(err){
-      if(err){
-          console.log(err);
-      }else{
-          console.log("The File was saved");
-      }
-  });
   console.log(net.activate(testPlayer(rawAr, player2)));
   console.log(net.activate(testPlayer(rawAr, player3)));
+  console.log(net.activate(player4));
 
 }, 5000);
